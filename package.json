@@ -24,7 +24,6 @@
     "dev": "ts-node src/app.ts",
     "build": "tsc",
     "start": "node dist/app.js",
-    "heroku-postbuild": "npm run build",
     "watch": "tsc --watch"
   },
   "engines": {
