@@ -52,7 +52,7 @@ export const getCategoryTotalDuration = async (req: Request, res: Response) => {
 
     const totalDuration = tasks.reduce((acc, task) => acc + Number(task.duration), 0);
 
-    res.json({ categoryId, totalDuration });
+    res.status(200).json(totalDuration);
   } catch (error) {
     console.error("Erro ao calcular a soma das durações das tarefas", error);
     res.status(500).json({ message: "Erro ao calcular a soma das durações das tarefas" });
