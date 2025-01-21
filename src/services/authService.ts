@@ -74,7 +74,7 @@ export const registerUser = async (name: string, email: string, password: string
 export const getUserData = async (userId: string) => {
   try {
     // Busca os dados do usuário no banco de dados
-    const user = await User.findById(userId).select("-password"); // Exclui a senha
+    const user = await User.findById(userId); // Exclui a senha
 
     if (!user) {
       throw new Error("Usuário não encontrado");
