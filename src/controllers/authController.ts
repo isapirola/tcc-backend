@@ -17,7 +17,7 @@ export const registerController = async (req: Request, res: Response) => {
     const result = await registerUser(name, email, password);
 
     // Retornar a resposta de sucesso
-    res.status(201).json(result);
+    res.status(201).json({ message: "Usuário registrado com sucesso", ...result });
   } catch (error: any) {
     console.error("Erro ao registrar usuário", error);
     res.status(500).json({ message: error.message || "Erro ao registrar usuário" });
@@ -28,8 +28,8 @@ export const loginController = async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   try {
-    const token = await loginUser(email, password);
-    res.status(200).json({ message: "Login bem-sucedido", token });
+    const response = await loginUser(email, password);
+    res.status(200).json({ message: "Login bem-sucedido", ...response });
   } catch (error: unknown) {
     // Aqui verificamos se o erro é uma instância de Error
     if (error instanceof Error) {

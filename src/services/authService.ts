@@ -62,15 +62,9 @@ export const registerUser = async (name: string, email: string, password: string
 
     // Retornar os dados necessários
     return {
-      message: "Usuário registrado com sucesso",
       accessToken,
       refreshToken,
-      user: {
-        name: newUser.name,
-        email: newUser.email,
-        userId: newUser._id,
-        senha: newUser.password,
-      },
+      user: newUser,
     };
   } catch (error: any) {
     throw new Error(`Erro no registro: ${error.message}`);
