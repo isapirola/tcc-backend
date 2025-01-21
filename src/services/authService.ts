@@ -81,11 +81,7 @@ export const getUserData = async (userId: string) => {
     }
 
     // Retorna todos os dados do usuário, incluindo o refreshToken
-    return {
-      id: user._id,
-      name: user.name,
-      email: user.email,
-    };
+    return user;
   } catch (error: any) {
     throw new Error(`Erro ao obter dados do usuário: ${error.message}`);
   }
