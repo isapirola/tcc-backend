@@ -89,10 +89,10 @@ export const getUserData = async (userId: string) => {
 
 export const updateUser = async (
   userId: string,
-  data: { name?: string; password?: string }
+  data: { name?: string; email?: string; password?: string }
 ) => {
   try {
-    const { name, password } = data;
+    const { name, email, password } = data;
 
     // Busca o usuário pelo ID
     const user = await User.findById(userId);
@@ -105,16 +105,18 @@ export const updateUser = async (
       user.name = name;
     }
 
+    if (email) {
+      user.email = email;
+    }
+
     if (password) {
       // Criptografa a nova senha antes de salvar
       const hashedPassword = await bcrypt.hash(password, 10);
       user.password = hashedPassword;
     }
 
-    // Salva as alterações no banco
     const updatedUser = await user.save();
 
-    // Retorna o usuário atualizado (omitindo a senha)
     return {
       id: updatedUser._id,
       name: updatedUser.name,

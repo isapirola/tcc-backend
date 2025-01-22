@@ -59,7 +59,7 @@ export const getUserDataController = async (req: AuthenticatedRequest, res: Resp
 
 export const updateUserController = async (req: AuthenticatedRequest, res: Response) => {
   const userId = req.user?.id; // Obtém o ID do usuário autenticado
-  const { name, password } = req.body; // Dados de atualização
+  const { name, email, password } = req.body; // Dados de atualização
 
   if (!userId) {
     res.status(401).json({ message: "Usuário não autenticado." });
@@ -67,7 +67,7 @@ export const updateUserController = async (req: AuthenticatedRequest, res: Respo
   }
 
   try {
-    const updatedUser = await updateUser(userId, { name, password });
+    const updatedUser = await updateUser(userId, { name, email, password });
     res.status(200).json({ message: "Usuário atualizado com sucesso", user: updatedUser });
   } catch (error: any) {
     res.status(500).json({ message: `Erro ao atualizar usuário: ${error.message}` });
