@@ -117,11 +117,7 @@ export const updateUser = async (
 
     const updatedUser = await user.save();
 
-    return {
-      id: updatedUser._id,
-      name: updatedUser.name,
-      email: updatedUser.email,
-    };
+    return updatedUser;
   } catch (error: any) {
     throw new Error(`Erro ao atualizar usuário: ${error.message}`);
   }
