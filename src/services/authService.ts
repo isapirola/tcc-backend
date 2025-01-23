@@ -28,7 +28,7 @@ export const loginUser = async (email: string, password: string) => {
 
     return { accessToken, refreshToken, user };
   } catch (error: any) {
-    throw new Error(`Erro no login: ${error.message}`);
+    throw new Error(error.message);
   }
 };
 
@@ -67,7 +67,7 @@ export const registerUser = async (name: string, email: string, password: string
       user: newUser,
     };
   } catch (error: any) {
-    throw new Error(`Erro no registro: ${error.message}`);
+    throw new Error(error.message);
   }
 };
 
